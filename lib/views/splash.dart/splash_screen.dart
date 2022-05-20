@@ -6,6 +6,7 @@ import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mapbox_navigation/controllers/map_controller.dart';
 import 'package:mapbox_navigation/helpers/socket_io.dart';
+import 'package:mapbox_navigation/requests/profile_get_request.dart';
 import 'package:mapbox_navigation/views/bottom_sheet/bottom_showing.dart';
 import 'package:mapbox_navigation/views/home/home_screen.dart';
 import 'package:mapbox_navigation/views/login/login.dart';
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    initializeLocationAndSave();
+   
      
     super.initState();
   }
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
 late CameraPosition initialCameraPosition;
  late MapboxMapController mapboxMapController;
 
-  void initializeLocationAndSave() async {
+  void initializeLocationAndSave(profile) async {
     Location _location = Location();
     bool? _serviceEnabled;
     PermissionStatus? _permissionGranted;
@@ -52,13 +53,13 @@ late CameraPosition initialCameraPosition;
    getController.currentLocation =
         LatLng(_locationData.latitude!, _locationData.longitude!);
 
+        profile.id == null?
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen())):
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> Tabbar()));
+
   
 // 625b97828ef99bcd4551171f
-
-
-  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> Tabbar()));
-
-
   }
 
  
@@ -66,11 +67,12 @@ late CameraPosition initialCameraPosition;
   @override
   Widget build(BuildContext context) {
 NavigationController getController = Get.put(NavigationController());
-
+ ProfileGettingController profile = Get.put(ProfileGettingController());
+ SocketIOController socketIO = Get.put(SocketIOController());
 
     return GetBuilder<NavigationController>(
       initState: (state){
-
+     initializeLocationAndSave(profile);
       },
       builder: (controller) {
         return EasySplashScreen(

@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                         print(loginstate );
                             if(loginstate == 200){
                               controller.falseState();
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Tabbar()));
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> Tabbar()));
                             }
                           // else{
                           //   controller.loginSetting();

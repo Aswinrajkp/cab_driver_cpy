@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_navigation/helpers/shared_preferences.dart';
+import 'package:mapbox_navigation/requests/profile_get_request.dart';
 import 'package:mapbox_navigation/views/splash.dart/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+ProfileGettingController profile = Get.put(ProfileGettingController());
+    profile.profileGetting();
     return const GetMaterialApp(
             debugShowCheckedModeBanner: false,
       home: SplashScreen(),

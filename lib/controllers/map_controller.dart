@@ -23,7 +23,7 @@ class NavigationController extends GetxController{
    Map? lastResponse;
   bool? isDestination = false;
    String? pickupjson; // for sharing
-   String? destination; // for sharing
+  late String destination; // for sharing
    MapboxMapController? mapboxMapController;
    String? distance;
    String? dropoffTime;
@@ -92,32 +92,38 @@ bool isNavigating = false;
       var pickup = response["place"];
       pickupLatlng = response['location'];
       pickupjson = json.encode(response);
-      pickUpLocationForDriver = response["place"];
       update();
       return pickup;
     }
   }
-  changeSearchFalse(){
-    isDestination = false;
-    update();
-    print('false');
-  }
-  changeSearchTrue(){
-    isDestination = true;
-    update();
-    print('true');
-  }
 
-  destinationSetting(index) {
-    destination = json.encode(response![index]);
-    update();
-  }
+   destinationHandler(userLocation) async {
+      var response = await getParsedReverseGeocoding(userLocation);;
+      destination = json.encode(response);
+      update();
+    }
 
-  pickupSetting(index) {
-    pickupjson = json.encode(response![index]);
-    pickUpLocationForDriver = response![index]["place"];
-    update();
-  }
+  // changeSearchFalse(){
+  //   isDestination = false;
+  //   update();
+  //   print('false');
+  // }
+  // changeSearchTrue(){
+  //   isDestination = true;
+  //   update();
+  //   print('true');
+  // }
+
+  // destinationSetting(index) {
+    // destination = json.encode(response![index]);
+  //   update();
+  // }
+
+  // pickupSetting(index) {
+  //   pickupjson = json.encode(response![index]);
+  //   pickUpLocationForDriver = response![index]["place"];
+  //   update();
+  // }
 
   lastResponseGetting(context) async {
     // pickupLocation = await getTripLatlng("source");
@@ -130,20 +136,20 @@ bool isNavigating = false;
     update();
   }
 
-  destinationGetting(index) {
-    destinationLatlng = response![index]['location'];
+  destinationGetting(cordinates) {
+    destinationLatlng =  cordinates;
     update();
   }
 
-  pickupGetting(index) {
-    if (response![index]['location'] == null) {
-      pickupLatlng = currentLocation;
-      update();
-    } else {
-      pickupLatlng = response![index]['location'];
-      update();
-    }
-  }
+  // pickupGetting(index) {
+  //   if (response![index]['location'] == null) {
+  //     pickupLatlng = currentLocation;
+  //     update();
+  //   } else {
+  //     pickupLatlng = response![index]['location'];
+  //     update();
+  //   }
+  // }
 
 
   onMapCreated(MapboxMapController controller) async {

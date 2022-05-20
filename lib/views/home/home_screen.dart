@@ -114,6 +114,7 @@ class _MainScreenState extends State<MainScreen> {
                 controller: panelController,
                 parallaxEnabled: false,
                 parallaxOffset: .5,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(19) ),
                 body: Container(
                   child: Stack(
                     children: [

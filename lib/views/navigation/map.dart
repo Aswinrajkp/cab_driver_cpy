@@ -28,7 +28,7 @@ class _MapScreenState extends State<MapScreen> {
     for (String type in ['source', 'destination']) {
       getController.locations.add(CameraPosition(target: getTripLatlng(type)));
     }
-    getController.initailizeDirectionResponse();
+    // getController.initailizeDirectionResponse();
     super.initState();
   }
 

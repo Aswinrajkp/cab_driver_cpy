@@ -15,14 +15,14 @@ class Tabbar extends StatefulWidget {
 }
 
 class _TabbarState extends State<Tabbar> {
-
+SocketIOController socketIO = Get.put(SocketIOController());
 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    socketConnect();
+    socketIO.socketConnect();
   }
 
 

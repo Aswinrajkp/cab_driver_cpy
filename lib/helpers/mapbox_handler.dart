@@ -80,7 +80,7 @@ LatLng getCenterCoordinatesForPolyline(Map geometry) {
 getTripLatlng(String type) {
   List sourceLocationList = json.decode(getController.pickupjson!)['location'];
   List destinationLocationList =
-      json.decode(getController.destination!)['location'];
+      json.decode(getController.destination)['location'];
   LatLng source = LatLng(sourceLocationList[0], sourceLocationList[1]);
   LatLng destination =
       LatLng(destinationLocationList[0], destinationLocationList[1]);

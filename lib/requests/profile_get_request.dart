@@ -9,11 +9,12 @@ import 'package:mapbox_navigation/helpers/shared_preferences.dart';
 class ProfileGettingController extends GetxController{
  late Response response;
 var profile;
+String? id;
 //  var user = FirebaseAuth.instance.currentUser!;
  
 
  profileGetting() async {
-   String id =await IdStoring.getId();
+    id =await IdStoring.getId();
    print(id);
     try {
       response = await mainDio.get("/profile/$id");

@@ -128,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                                     ProfileListTileWidget(
                                     title: "Licence Number", trailing: "12345586090"),
                                     ProfileListTileWidget(
-                                    title: "Vehicle Number", trailing: "kl 58 m3215"),
+                                    title: "Vehicle Number", trailing: "kl 58 WE 3215"),
                                     ProfileListTileWidget(
                                     title: "Rc Number", trailing: "ke23558938"),
                                 ProfileListTileWidget(

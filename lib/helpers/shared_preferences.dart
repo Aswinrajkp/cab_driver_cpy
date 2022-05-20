@@ -14,4 +14,10 @@ static SharedPreferences? preferences;
   static Future getId() async {
     return  preferences!.getString("id");
   }
+
+
 }
+
+
+
+
